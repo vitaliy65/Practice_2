@@ -18,11 +18,11 @@
 ### Query 1: Матчі в Україні у 2012 році
 ```csharp
 var selectedGames = games.Where(p => p.Country == "Ukraine" && p.Date.Year == 2012);
-
+```
 ### Query 2: Friendly матчі Італії з 2020 р.
 ```csharp
 var selectedGames = games.Where(p => p.Country == "Italy" && p.Date.Year >= 2020 && p.Neutral == true);
-
+```
 ### Query 3: Домашні матчі Франції у 2021 р.
 ```csharp
 var selectedGames = from p in games
@@ -30,14 +30,14 @@ var selectedGames = from p in games
                        && p.Country == "France"
                        && p.Home_score == p.Away_score && p.Date.Year == 2021
                     select p;
-
+```
 ### Query 4: Матчі Германії з 2018 по 2020 рр.
 ```csharp
 var selectedGames = from p in games
                     where p.Away_team == "Germany"
                        && p.Away_score < p.Home_score && p.Date.Year >= 2018 && p.Date.Year <= 2020
                     select p;
-
+```
 ### Query 5: Кваліфікаційні матчі UEFA Euro в Україні
 ```csharp
 var selectedGames = from p in games
@@ -47,14 +47,14 @@ var selectedGames = from p in games
                        && p.Tournament == "UEFA Euro qualification"
                        && (p.City == "Kyiv" || p.City == "Kharkiv")
                     select p;;
-
+```
 ### Query 6: Матчі чемпіонату світу з футболу
 ```csharp
 var selectedGames = from p in games
                     where p.Tournament == "FIFA World Cup"
                     select p;
 selectedGames = selectedGames.TakeLast(8).Reverse();
-
+```
 ### Query 7: Перший матч України у 2023 році, що виграла
 ```csharp
 var selectedGames = from p in games
@@ -63,7 +63,7 @@ var selectedGames = from p in games
                        && p.Away_score > p.Home_score
                     select p;
 FootballGame g = selectedGames.First();
-
+```
 ### Query 8: Матчі Євро-2012 в Україні
 ```csharp
 var selectedGames = from g in games
@@ -76,7 +76,7 @@ var selectedGames = from g in games
                         Team2 = g.Away_team,
                         Goals = g.Home_score + g.Away_score
                     };
-
+```
 ### Query 9: Матчі UEFA Nations League у 2023 році
 ```csharp
 var selectedGames = from g in games
@@ -89,7 +89,7 @@ var selectedGames = from g in games
                         Result = (g.Home_score > g.Away_score) ? "Win" :
                                  (g.Home_score < g.Away_score) ? "Loss" : "Draw"
                     };
-
+```
 ### Query 10: Матчі Gold Cup у липні 2023 р.
 ```csharp
 var selectedGames = games.Where(g => g.Date.Year == 2023 && g.Date.Month == 7 && g.Tournament == "Gold Cup").Skip(4).Take(6);
